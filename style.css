@@ -23,10 +23,10 @@ body {
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.9);
+  background: white;
   padding: 2rem;
-  border: 2px solid var(--color-text);
-  box-shadow: 5px 5px 0px var(--color-text);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   text-align: center;
   max-width: 400px;
   width: 100%;
@@ -50,13 +50,13 @@ h1 {
 
 input[type="text"] {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   font-family: var(--font-mono);
-  border: 2px solid var(--color-text);
-  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
   font-size: 1rem;
   box-sizing: border-box;
-  /* Fix padding issue */
 }
 
 input[type="text"]:focus {
@@ -65,25 +65,26 @@ input[type="text"]:focus {
 }
 
 button {
-  background: var(--color-text);
-  color: var(--color-bg);
-  border: 2px solid var(--color-text);
-  padding: 10px 20px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 24px;
   font-family: var(--font-mono);
   font-weight: bold;
   cursor: pointer;
-  text-transform: uppercase;
-  transition: transform 0.1s, box-shadow 0.1s;
+  font-size: 1rem;
+  transition: opacity 0.2s;
 }
 
 button:hover {
-  transform: translate(-2px, -2px);
-  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+  opacity: 0.8;
+  transform: none;
+  box-shadow: none;
 }
 
 button:active {
-  transform: translate(0, 0);
-  box-shadow: none;
+  opacity: 0.6;
 }
 
 #qrContainer {
