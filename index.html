@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR CODE SHARER</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>QR CODE SHARER</h1>
+
+    <div class="input-group">
+      <input type="text" id="urlInput" placeholder="Enter link here (e.g. https://...)" />
+      <button id="generateBtn">Generate QR Code</button>
+    </div>
+
+    <div id="qrContainer">
+      <!-- QR Code will appear here -->
+      <span style="opacity: 0.5;">[WAITING FOR INPUT]</span>
+    </div>
+
+    <footer>
+      SECURE LINK ENCODING SYSTEM v1.0
+    </footer>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,143 @@
+:root {
+  --font-mono: 'Courier New', Courier, monospace;
+  --color-bg: #ffffff;
+  --color-text: #000000;
+  --color-grid: #e0e0e0;
+  --color-accent: #000000;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-mono);
+  background-color: var(--color-bg);
+  background-image:
+    linear-gradient(var(--color-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+  background-size: 20px 20px;
+  color: var(--color-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 2rem;
+  border: 2px solid var(--color-text);
+  box-shadow: 5px 5px 0px var(--color-text);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  border-bottom: 2px solid var(--color-text);
+  padding-bottom: 0.5rem;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  font-family: var(--font-mono);
+  border: 2px solid var(--color-text);
+  background: transparent;
+  font-size: 1rem;
+  box-sizing: border-box;
+  /* Fix padding issue */
+}
+
+input[type="text"]:focus {
+  outline: none;
+  background: #f0f0f0;
+}
+
+button {
+  background: var(--color-text);
+  color: var(--color-bg);
+  border: 2px solid var(--color-text);
+  padding: 10px 20px;
+  font-family: var(--font-mono);
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+button:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translate(0, 0);
+  box-shadow: none;
+}
+
+#qrContainer {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  border: 2px dashed var(--color-grid);
+}
+
+#qrContainer img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Redirect Page Specifics */
+.redirect-message {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.loading-dots::after {
+  content: ' .';
+  animation: dots 1.5s steps(5, end) infinite;
+}
+
+@keyframes dots {
+
+  0%,
+  20% {
+    content: ' .';
+  }
+
+  40% {
+    content: ' ..';
+  }
+
+  60% {
+    content: ' ...';
+  }
+
+  80% {
+    content: ' ....';
+  }
+
+  100% {
+    content: ' .....';
+  }
+}
+
+footer {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
