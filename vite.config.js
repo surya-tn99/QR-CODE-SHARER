@@ -1,5 +1,7 @@
-export default {
-    base: '/QR-CODE-SHARER/',
+import { defineConfig } from 'vite'
+
+export default defineConfig(({ command }) => ({
+    base: command === 'serve' ? '/' : '/QR-CODE-SHARER/',
     build: {
         rollupOptions: {
             input: {
@@ -8,4 +10,4 @@ export default {
             }
         }
     }
-}
+}))
