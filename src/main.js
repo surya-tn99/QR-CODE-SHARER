@@ -72,10 +72,8 @@ async function generateQRCode() {
     const encoded = btoa(formattedUrl);
 
     // Construct Redirect URL
-    // We assume the redirect folder is at ./redirect/ relative to root
-    // But since we are likely at /QR-CODE-SHARER/, we need to be careful with paths.
-    // GitHub Pages: /QR-CODE-SHARER/ -> /QR-CODE-SHARER/redirect/
-    const baseUrl = window.location.origin + window.location.pathname.replace(/\/$/, '') + '/redirect/';
+    // User requested to force this to the production GitHub Pages URL
+    const baseUrl = 'https://surya-tn99.github.io/QR-CODE-SHARER/redirect/';
     const finalLink = `${baseUrl}?r=${encoded}`;
 
     console.log("Target:", formattedUrl);
