@@ -6,38 +6,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QR CODE SHARER</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
-  <link rel="stylesheet" crossorigin href="/QR-CODE-SHARER/assets/index-C1uWHm3R.css">
+  <link rel="stylesheet" crossorigin href="/QR-CODE-SHARER/assets/index-BI8WCJEO.css">
 </head>
 
 <body>
   <div class="container">
 
     <!-- Shared Header -->
-    <h1 id="pageTitle">QR CODE SHARER</h1>
+    <h1 id="pageTitle">QR Sharer</h1>
 
     <!-- VIEW 1: Generator (Default) -->
     <div id="generatorView">
       <div class="input-group">
-        <input type="text" id="urlInput" placeholder="Enter link here (e.g. https://...)" />
-        <button id="generateBtn">Generate QR Code</button>
+        <input type="text" id="urlInput" placeholder="Paste your link here..." />
+        <button id="generateBtn">Get QR Code</button>
       </div>
 
       <div id="qrContainer">
         <!-- QR Code will appear here -->
-        <span style="opacity: 0.5;">[WAITING FOR INPUT]</span>
+        <span style="opacity: 0.5;">Waiting for link...</span>
       </div>
     </div>
 
     <!-- VIEW 2: Redirect (Hidden by default) -->
     <div id="redirectView" style="display: none;">
       <div class="redirect-message">
-        DECODING SECURE LINK<span class="loading-dots"></span>
+        <img src="./qr-code.gif" alt="Loading..." style="width: 50px; height: auto; margin-bottom: 1rem;">
+        <br>
+        Redirecting you...
       </div>
-      <p id="statusText" style="opacity: 0.7;">Target Acquisition In Progress</p>
+      <p id="statusText" style="opacity: 0.7;">Please wait a moment.</p>
     </div>
 
     <footer>
-      SECURE LINK ENCODING SYSTEM v1.0
+      Simple. Fast. Free.
     </footer>
   </div>
 
@@ -68,13 +70,13 @@
       if (viewName === 'redirect') {
         generatorView.style.display = 'none';
         redirectView.style.display = 'block';
-        title.innerText = 'REDIRECTING DETECTED';
-        document.title = 'Redirecting... | QR CODE SHARER';
+        title.innerText = 'One Moment...';
+        document.title = 'Redirecting...';
       } else {
         generatorView.style.display = 'block';
         redirectView.style.display = 'none';
-        title.innerText = 'QR CODE SHARER';
-        document.title = 'QR CODE SHARER';
+        title.innerText = 'QR Sharer';
+        document.title = 'QR Sharer';
       }
     }
 
