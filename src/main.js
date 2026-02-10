@@ -4,12 +4,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const encodedUrl = params.get('r');
 
-  // Logic 1: Redirect Page
-  if (window.location.pathname.includes('/redirect/') || encodedUrl) {
+  if (encodedUrl) {
+    // MODE: Redirect
+    showView('redirect');
     handleRedirect(encodedUrl);
+  } else {
+    // MODE: Generator
+    showView('generator');
+    initGenerator();
   }
+});
 
-  // Logic 2: Generator Page
+function showView(viewName) {
+  const generatorView = document.getElementById('generatorView');
+  const redirectView = document.getElementById('redirectView');
+  const title = document.getElementById('pageTitle');
+
+  if (viewName === 'redirect') {
+    generatorView.style.display = 'none';
+    redirectView.style.display = 'block';
+    title.innerText = 'REDIRECTING DETECTED';
+    document.title = 'Redirecting... | QR CODE SHARER';
+  } else {
+    generatorView.style.display = 'block';
+    redirectView.style.display = 'none';
+    title.innerText = 'QR CODE SHARER';
+    document.title = 'QR CODE SHARER';
+  }
+}
+
+function initGenerator() {
   const generateBtn = document.getElementById('generateBtn');
   if (generateBtn) {
     generateBtn.addEventListener('click', generateQRCode);
@@ -19,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'Enter') generateQRCode();
     });
   }
-});
+}
 
 function handleRedirect(encoded) {
   const statusText = document.getElementById('statusText');
@@ -72,8 +96,9 @@ async function generateQRCode() {
     const encoded = btoa(formattedUrl);
 
     // Construct Redirect URL
-    // User requested to force this to the production GitHub Pages URL
-    const baseUrl = 'https://surya-tn99.github.io/QR-CODE-SHARER/redirect/';
+    // Point to the ROOT of the app with ?r= param
+    // Production: https://surya-tn99.github.io/QR-CODE-SHARER/?r=...
+    const baseUrl = 'https://surya-tn99.github.io/QR-CODE-SHARER/';
     const finalLink = `${baseUrl}?r=${encoded}`;
 
     console.log("Target:", formattedUrl);
@@ -92,8 +117,6 @@ async function generateQRCode() {
         light: '#ffffff'
       }
     });
-
-    // Text removed by user request
 
   } catch (err) {
     alert("INVALID PROTOCOL (URL)");

@@ -10,16 +10,29 @@
 
 <body>
   <div class="container">
-    <h1>QR CODE SHARER</h1>
 
-    <div class="input-group">
-      <input type="text" id="urlInput" placeholder="Enter link here (e.g. https://...)" />
-      <button id="generateBtn">Generate QR Code</button>
+    <!-- Shared Header -->
+    <h1 id="pageTitle">QR CODE SHARER</h1>
+
+    <!-- VIEW 1: Generator (Default) -->
+    <div id="generatorView">
+      <div class="input-group">
+        <input type="text" id="urlInput" placeholder="Enter link here (e.g. https://...)" />
+        <button id="generateBtn">Generate QR Code</button>
+      </div>
+
+      <div id="qrContainer">
+        <!-- QR Code will appear here -->
+        <span style="opacity: 0.5;">[WAITING FOR INPUT]</span>
+      </div>
     </div>
 
-    <div id="qrContainer">
-      <!-- QR Code will appear here -->
-      <span style="opacity: 0.5;">[WAITING FOR INPUT]</span>
+    <!-- VIEW 2: Redirect (Hidden by default) -->
+    <div id="redirectView" style="display: none;">
+      <div class="redirect-message">
+        DECODING SECURE LINK<span class="loading-dots"></span>
+      </div>
+      <p id="statusText" style="opacity: 0.7;">Target Acquisition In Progress</p>
     </div>
 
     <footer>
