@@ -143,9 +143,13 @@ footer {
 
 @media (max-width: 480px) {
   .container {
-    padding: 1rem;
+    padding: 1.5rem;
     width: 90%;
-    box-shadow: 3px 3px 0px var(--color-text);
+    /* Cleaner Mobile Look */
+    background: white;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   h1 {
@@ -153,10 +157,28 @@ footer {
     margin-bottom: 1.5rem;
   }
 
-  input[type="text"],
+  input[type="text"] {
+    font-size: 1rem;
+    padding: 12px;
+    /* Cleaner Mobile Inputs */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+
   button {
-    font-size: 0.9rem;
-    padding: 8px;
+    font-size: 1rem;
+    padding: 12px 24px;
+    /* Cleaner Mobile Buttons */
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    box-shadow: none;
+  }
+
+  button:hover {
+    transform: none;
+    box-shadow: none;
   }
 
   #qrContainer {
