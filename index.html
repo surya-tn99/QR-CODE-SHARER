@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>QR CODE SHARER</title>
+  <link rel="icon" type="image/png" href="./favicon.png">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode/1.5.1/qrcode.min.js"></script>
   <link rel="stylesheet" crossorigin href="/QR-CODE-SHARER/assets/index-DreMpiPB.css">
 </head>
@@ -26,6 +27,9 @@
         <!-- QR Code will appear here -->
         <span style="opacity: 0.5;">Waiting for link...</span>
       </div>
+
+      <!-- Share Button (Hidden initially) -->
+      <button id="shareBtn" style="display: none; margin-top: 1rem; width: 100%;">SHARE QR CODE</button>
     </div>
 
     <!-- VIEW 2: Redirect (Hidden by default) -->
@@ -82,6 +86,8 @@
 
     function initGenerator() {
       const generateBtn = document.getElementById('generateBtn');
+      const shareBtn = document.getElementById('shareBtn');
+
       if (generateBtn) {
         generateBtn.addEventListener('click', generateQRCode);
 
@@ -89,6 +95,10 @@
         document.getElementById('urlInput').addEventListener('keypress', (e) => {
           if (e.key === 'Enter') generateQRCode();
         });
+      }
+
+      if (shareBtn) {
+        shareBtn.addEventListener('click', shareQRCode);
       }
     }
 
@@ -121,6 +131,7 @@
     async function generateQRCode() {
       const urlInput = document.getElementById('urlInput');
       const qrContainer = document.getElementById('qrContainer');
+      const shareBtn = document.getElementById('shareBtn');
       const rawUrl = urlInput.value.trim();
 
       // Basic Validation
@@ -128,6 +139,9 @@
         alert("INPUT REQUIRED");
         return;
       }
+
+      // Hide share button initially when forcing new generation
+      if (shareBtn) shareBtn.style.display = 'none';
 
       try {
         // Ensure protocol exists
@@ -166,10 +180,42 @@
           }
         });
 
+        // Show Share Button
+        if (shareBtn) shareBtn.style.display = 'block';
+
       } catch (err) {
         alert("INVALID PROTOCOL (URL)");
         console.error(err);
       }
+    }
+
+    async function shareQRCode() {
+      const canvas = document.querySelector('#qrContainer canvas');
+      if (!canvas) return;
+
+      canvas.toBlob(async (blob) => {
+        const file = new File([blob], "qr-code.png", { type: "image/png" });
+
+        // Check if Web Share API is supported
+        if (navigator.share && navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({
+              title: 'Secure QR Code',
+              text: 'Scan this secure link!',
+              files: [file]
+            });
+          } catch (err) {
+            console.error('Share failed:', err);
+          }
+        } else {
+          // Fallback: Download the image
+          const link = document.createElement('a');
+          link.download = 'qr-code.png';
+          link.href = canvas.toDataURL();
+          link.click();
+          alert("Sharing not supported on this browser. Image downloaded instead.");
+        }
+      });
     }
   </script>
 </body>
